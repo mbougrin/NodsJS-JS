@@ -1,0 +1,212 @@
+            <!DOCTYPE html>
+            <html lang="fr">
+                <head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                    <meta name="description" content="Mideel Création site internet. 
+                    Prime de l'état chèque numérique faite vous rembourser pour la création de votre site web jusqu'à 50 %.
+                    Devis gratuit."/>
+                    <meta name="author" content="mbougrin" />
+                    <meta name="title" content="Mideel Création site internet. 
+                    Prime de l'état chèque numérique faite vous rembourser pour la création de votre site web jusqu'à 50 %.
+                    Devis gratuit."/>
+                    <meta name="copyright" content="mbougrin">
+                    <title>Mideel - Création site internet</title>
+                    <!-- Favicon-->
+                    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+                    <!-- Font Awesome icons (free version)-->
+                    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+                    <!-- Google fonts-->
+                    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+                    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+                    <!-- Third party plugin CSS-->
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+                    <!-- Core theme CSS (includes Bootstrap)-->
+                    <link href="css/styles.css" rel="stylesheet" />
+                </head>
+                <body id="page-top">
+                    <!-- Navigation-->
+                    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+                        <div class="container">
+                            <a class="navbar-brand js-scroll-trigger" href="#page-top">Mideel</a>
+                            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <div class="collapse navbar-collapse" id="navbarResponsive">
+                                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">À propos</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#horaire">Horaire</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#tarifs">Tarifs</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Masthead-->
+                    <header class="masthead">
+                        <div class="container h-100">
+                            <div class="row h-100 align-items-center justify-content-center text-center">
+                                <div class="col-lg-10 align-self-end">
+                                    <h1 class="text-uppercase text-white font-weight-bold">Mideel</h1>
+                                    <hr class="divider my-4" />
+                                </div>
+                                <div class="col-lg-8 align-self-baseline">
+                                    <p class="text-white-75 font-weight-light mb-5">Création site internet</p>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- About-->
+                    <section class="page-section bg-primary" id="about">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 text-center">
+                                    <h2 class="text-white mt-0">Mideel</h2>
+                                    <hr class="divider light my-4" />
+                                    <p class="text-white-50 mb-4">
+                                        Auto entrepreneur dans le développement informatique.</br></br>
+                                        Création de site internet OnePage, de site internet Vitrine ou site internet E-Commerce.</br>
+                                        Une aide de l'État pour créer un site internet allant jusqu'à 50 % de votre futur site internet.</br>
+                                        Faites la demande de votre financement ainsi que votre devis.</br>
+                                        Explication ci-joint pour le financement et pour toute information contacter moi.</br>
+                                        Devis gratuit.</br></br>
+                                        <a class="btn btn-light" href="https://www.francenum.gouv.fr/comprendre-le-numerique/quelles-sont-les-aides-financieres-pour-la-numerisation-de-votre-entreprise">
+                                            <button class="btn btn-light">
+                                            Procédure demande chèque numérique region par region.
+                                            </button></a></br></br>
+                                        <a class="btn btn-light" href="https://www.iledefrance.fr/cheque-numerique-pour-un-commerce-connecte">
+                                            <button class="btn btn-light">
+                                            Procédure demande chèque numérique Île de France.
+                                        </button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Services-->
+                    <section class="page-section bg-dark text-white">
+                        <div class="container text-center">
+                            <h2 class="mb-4">Horaire</h2>
+                        </div>
+                    </section>
+                    <section class="page-section" id="horaire">
+                        <div class="container">
+                        <table class="table text-center">
+                        <thead>
+                            <tr><th>Jour</th><th>Heure</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Lundi</td><td>19h 00h</td></tr>
+                            <tr><td>Mardi</td><td>19h 00h</td></tr>
+                            <tr><td>Mercredi</td><td>19h 00h</td></tr>
+                            <tr><td>Jeudi</td><td>19h 00h</td></tr>
+                            <tr><td>Vendredi</td><td>14h 00h</td></tr>
+                            <tr><td>Samedi</td><td>9h 00h</td></tr>
+                            <tr><td>Dimanche</td><td>9h 00h</td></tr>
+                        </tbody>
+                        </table>
+                        </div>
+                    </section>
+                    <section class="page-section bg-dark text-white">
+                        <div class="container text-center">
+                            <h2 class="mb-4">Services</h2>
+                        </div>
+                    </section>
+                    <section class="page-section" id="services">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 text-center">
+                                    <div class="mt-5">
+                                        <i class="fas fa-4x fa-globe text-primary mb-4"></i>
+                                        <h3 class="h4 mb-2">Création de site internet</h3>
+                                        <p class="text-muted mb-0">Création de site internet onepage, de site vitrine ou de site e-commerce.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 text-center">
+                                    <div class="mt-5">
+                                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                        <h3 class="h4 mb-2">Création application Windows/MacOsx/Linux</h3>
+                                        <p class="text-muted mb-0">Création application sous les système exploitation Windows/MacOsx/Linux en C/C++/Qt/Rust.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 text-center">
+                                    <div class="mt-5">
+                                        <i class="fab fa-4x fa-android text-primary mb-4"></i>
+                                        <h3 class="h4 mb-2">Création application Android/IOS</h3>
+                                        <p class="text-muted mb-0">Création application pour smartphone Android/IOS.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 text-center">
+                                    <div class="mt-5">
+                                        <i class="fas fa-4x fa-heart text-primary mb-4"></i>
+                                        <h3 class="h4 mb-2">Développement informatique</h3>
+                                        <p class="text-muted mb-0">
+                                            Ma passion au service des autres.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Portfolio-->
+                    <div id="tarifs">
+                        <section class="page-section bg-dark text-white">
+                        <div class="container text-center">
+                            <h2 class="mb-4">Tarifs Site Internet</h2>
+                        </div>
+                        </section>
+                        <table class="table text-center">
+                        <thead>
+                            <tr><th>Site Internet</th><th>Tarif</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Site OnePage</td><td>500€-2000€ HT/619€-2474€ TTC</td></tr>
+                            <tr><td>Site Vitrine</td><td>1000€-3000€ HT/1237€-3711€ TTC</td></tr>
+                            <tr><td>Site E-Commerce</td><td>3000€-10000€ HT/3711€-12370€ TTC</td></tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    <!-- Call to action-->
+                    <section class="page-section bg-dark text-white">
+                        <div class="container text-center">
+                            <h2 class="mb-4">Contact</h2>
+                        </div>
+                    </section>
+                    <!-- Contact-->
+                    <section class="page-section" id="contact">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 text-center">
+                                    <p class="text-muted mb-5">
+                                    Pour toute information, devis de votre site internet ou application hésité pas à me contacter
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                                    <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                                    <div><a href="tel:+33749632555">07 49 63 25 55</a></div>
+                                </div>
+                                <div class="col-lg-4 mr-auto text-center">
+                                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                                    <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
+                                    <a class="d-block" href="mailto:mbougrin_dev@hotmail.com">mbougrin_dev@hotmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Footer-->
+                    <footer class="bg-light py-5">
+                        <div class="container"><div class="small text-center text-muted">Copyright © 
+                            <a href="https://mbougrin.fr/">mbougrin</a>
+                            - 2020
+                        </div></div>
+                    </footer>
+                    <!-- Bootstrap core JS-->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+                    <!-- Third party plugin JS-->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+                    <!-- Core theme JS-->
+                    <script src="js/scripts.js"></script>
+                </body>
+            </html>
