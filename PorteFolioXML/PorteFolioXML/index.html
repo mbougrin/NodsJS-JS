@@ -1,0 +1,137 @@
+<!-- *********************************************************************** -->
+<!--                                                                         -->
+<!--                                                      :::      ::::::::  -->
+<!-- index.html                                         :+:      :+:    :+:  -->
+<!--                                                  +:+ +:+         +:+    -->
+<!-- By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+       -->
+<!--                                              +#+#+#+#+#+   +#+          -->
+<!-- Created: 2017/07/21 08:00:27 by mbougrin          #+#    #+#            -->
+<!-- Updated: 2017/09/19 07:52:44 by mbougrin         ###   ########.fr      -->
+<!--                                                                         -->
+<!-- *********************************************************************** -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Google AdSense -->
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-7992805410806745",
+	      enable_page_level_ads: true
+			    });
+		</script>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="../../favicon.ico">
+
+		<title>42 Student</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Google font CSS -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="/dashboard.css" rel="stylesheet">
+
+		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<script src="js/ie-emulation-modes-warning.js"></script>
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	  <![endif]-->
+	</head>
+	<body onload="init_body()">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" onclick="home()">42 Student Mbougrin</a>
+				</div>
+				<div class="navbar-collapse collapse" aria-expanded="false" style="height:1px;">
+					<ul class="nav navbar-nav">
+						<li class="active" id="homeid"><a href="#" onclick="home()" id="home">
+							<span class="glyphicon glyphicon-home"></span> Accueil</a>
+						</li>
+						<li id="projetid"><a href="#" onclick="project()" id="projet">
+							<span class="glyphicon glyphicon-file"></span> Projet 42</a>
+						</li>
+						<li id="opensourceid"><a href="#" onclick="opensource()" id="opensource">
+							<span class="glyphicon glyphicon-folder-open"></span> Autodidacte/OpenSource</a>
+						</li>
+						<li id="xpid"><a href="#" onclick="work()" id="xp">
+							<span class="glyphicon glyphicon-briefcase"></span> Expérience Professionnel</a>
+						</li>
+						<li id="schoolid"><a href="#" onclick="school()" id="school">
+							<span class="glyphicon glyphicon-education"></span> Formation</a>
+						</li>
+						<li id="skillid"><a href="#" onclick="skill()" id="skill">
+							<span class="glyphicon glyphicon-cog"></span> Compétence</a>
+						</li>
+					<!--	<li id="tutorialid"><a href="#" onclick="tutorial()" id="tutorial">
+								<span class="glyphicon glyphicon-book"></span> Tutoriel</a>
+								</li> -->
+						<li id="aboutmeid"><a href="#" onclick="aboutme()" id="aboutme">
+								<span class="glyphicon glyphicon-user"></span> A Propos de Moi</a>
+						</li>
+						<li id="contactid"><a href="#" onclick="contact()">
+								<span class="glyphicon glyphicon-envelope"></span> Contact</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#" onclick="my_translate()" id="langue">
+							<span class="glyphicon glyphicon-globe"></span> Fr/Eng
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar" id="sidebarColor">
+					<div>
+					</div>
+					<ul class="nav nav-sidebar" id="side_bar">
+					</ul>
+				</div>
+				<div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+					<div id="print_info" class="alert alert-info alert-dismissable"></div>
+					<div id="print_info_danger"></div>
+					<h2 class="sub-header col-md-offset-1" id="name_header">Accueil</h2>
+					<div class="table-responsive col-md-10 col-md-offset-1 rounded" id="main_div" style="font-family: 'Open Sans', sans-serif;">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- Bootstrap core JavaScript
+	  ================================================== -->
+	  <!-- Placed at the end of the document so the pages load faster -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  <script src="function.js"></script>
+
+	  <script>window.jQuery || document.write('<script src=js/vendor/jquery.min.js"><\/script>')</script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+	  <script src="js/vendor/holder.min.js"></script>
+	  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	  <script src="js/ie10-viewport-bug-workaround.js"></script>
+	</body>
+</html>
