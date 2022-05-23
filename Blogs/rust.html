@@ -8,7 +8,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Langage de programmation Rust</title>
+  <meta name="description" content="tutoriel rust programmation cargo installation linux windows macosx example video"/>
+  <meta name="title" content="tutoriel rust programmation cargo installation linux windows macosx example video"/>
+
+  <title>Rust Tutoriel, programmation et installation</title>
+
+  <!-- Icone Tab Nab -->
+  <link rel="icon" href="img/blog.png" />
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +34,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Blogs mbougrin</a>
+      <a class="navbar-brand" href="index.html">Blog mbougrin</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -82,28 +88,199 @@
 
           <h2 class="section-heading">Installation</h2>
 
-          <p>Installation pour Linux ou MacOsx</p>
+          <blockquote class="blockquote">Installation pour Linux ou MacOsx</blockquote>
           <p>Commande a executer dans le terminal pour installation de Rust pour MacOsX et Linux.</p>
           <pre><code class="db w-100 hljs bash">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre>
 
-          <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+          <blockquote class="blockquote">Installation pour Windows</blockquote>
+          <p>Pour télécharger les versions windows 32Bit out 64Bit</p>
 
-          <h2 class="section-heading">Reaching for the Stars</h2>
+          <a href="https://static.rust-lang.org/rustup/dist/i686-pc-windows-msvc/rustup-init.exe" class="button btn btn-primary">Télécharger 
+            <span class="nowrap">rustup-init.exe</span>
+            <span class="nowrap">(32-bit)</span>
+          </a><br/><br/>
 
-          <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+          <a href="https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe" class="button btn btn-primary">Télécharger 
+            <span class="nowrap"> rustup-init.exe</span>
+            <span class="nowrap">(64-bit)</span>
+          </a><br/><br/>
 
-          <a href="#">
-            <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
-          </a>
-          <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+          <blockquote class="blockquote">Autres méthodes d'installation</blockquote>
 
-          <p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+          <p>L'installation décrite ci-dessus, via <span class="border rounded" style="padding:3px;">rustup</span>, est la façon préférée d'installer Rust pour la majorité des développeurs.
+          Cependant, Rust peut également être installé par d'autres méthodes.</p>
 
-          <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+          <a href="https://forge.rust-lang.org/infra/other-installation-methods.html" class="button btn btn-primary">Télécharger 
+          </a><br/>
 
-          <p>Placeholder text by
-            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
-            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
+          <h2 class="section-heading">Compilation et Exécution en ligne</h2>
+
+          <p>Voici un site internet qui permet de compiler et d'exécuter du Rust.</p>
+          
+          <a href="https://play.rust-lang.org/" class="button btn btn-primary">play.rust-lang.org 
+          </a><br/>
+
+          <h2 class="section-heading">Gestion des chaînes d'outils avec Rustup</h2>
+
+          <p>Rust est installé et géré par l'outil <span class="border rounded" style="padding:3px;">rustup</span>. Rust suit un processus de publication rapide avec une nouvelle version toutes les six semaines et il supporte un grand nombre de plateformes, donc il y a de nombreuses versions de Rust disponibles en même temps. <span class="border rounded" style="padding:3px;">rustup</span> gère ces différentes versions de manière consistante sur toutes les plateformes supportées par Rust, permettant l'installation de Rust depuis les canaux beta et nightly ainsi que le support de cibles de cross-compilation supplémentaires.</p>
+
+          <p>Si vous avez installé rustup dans le passé, vous pouvez mettre à jour votre installation en exécutant : rustup update.</p>
+
+          <p>Pour plus d'information, visitez <a href="https://github.com/rust-lang/rustup/blob/master/README.md">la documentation de <span class="border rounded" style="padding:3px;">rustup.</span></a></p>
+
+          <h2 class="section-heading">Configuration de la variable d’environnement PATH</h2>
+
+          <p>Dans l’environnement de développement de Rust, tous les outils sont installés dans le répertoire <span class="border rounded" style="padding:3px;">~/.cargo/bin</span> et c'est là que vous trouverez la chaîne d'outils Rust incluant <span class="border rounded" style="padding:3px;">rustc</span>, <span class="border rounded" style="padding:3px;">cargo</span>, et <span class="border rounded" style="padding:3px;">rustup</span>.</p>
+
+          <p>Ainsi, il est de coutume pour les développeurs Rust d'inclure ce répertoire dans leur <a href="https://en.wikipedia.org/wiki/PATH_(variable)">variable d’environnement <span class="border rounded" style="padding:3px;">PATH</span></a>. Pendant l'installation <span class="border rounded" style="padding:3px;">rustup</span> essaiera de configurer le <span class="border rounded" style="padding:3px;">PATH</span>. À cause des différences entre les plateformes, les shells de commande, ou de problèmes de <span class="border rounded" style="padding:3px;">rustup</span>, la modification de <span class="border rounded" style="padding:3px;">PATH</span> pourrait ne prendre effet qu'après le redémarrage de la console, après que l'utilisateur soit déconnecté , ou ne pas fonctionner du tout.</p>
+
+          <p>Si, après l'installation, exécuter la commande <span class="border rounded" style="padding:3px;">rustc --version</span> dans la console échoue, c'est probablement la raison.</p>
+
+          <h2 class="section-heading">Désinstaller Rust</h2>
+
+          <p>Si jamais vous voulez désinstaller Rust, vous pouvez exécuter <span class="border rounded" style="padding:3px;">rustup self uninstall</span>. Mais vous nous manquerez !</p>
+              
+          <h2 class="section-heading">Source Rust Cargo HelloWorld</h2>
+                    
+          <blockquote class="blockquote">Premiers pas avec Cargo</blockquote>
+
+          <p>Cette section donne un aperçu rapide de l'outil de ligne de commande cargo. Nous démontrons sa capacité à générer un nouveau package pour nous, sa capacité à compiler le crate dans le package et sa capacité à exécuter le programme résultant.</p>
+
+          <p>Pour démarrer un nouveau colis avec Cargo, utilisez <span class="border rounded" style="padding:3px;">cargo new</span>:</p>
+
+          <pre><code class="db w-100 hljs bash">$cargo new hello_world</code></pre>
+          <p>Par défaut, Cargo <span class="border rounded" style="padding:3px;">--bin</span> pour faire un programme binaire. Pour faire une bibliothèque, on passerait 
+            <span class="border rounded" style="padding:3px;">--lib</span>, au lieu de cela.</p>
+
+          <p>Voyons ce que Cargo a généré pour nous :</p>
+
+          <pre><code class="db w-100 hljs bash">$cd hello_world</br>$ tree .</br>.</br>├── Cargo.toml</br>└── src</br>    └── main.rs</br></br>1 directory, 2 files
+          </code></pre>
+
+          <p>C'est tout ce dont nous avons besoin pour commencer. Tout d'abord, vérifions <span class="border rounded" style="padding:3px;">Cargo.toml:</span></p>
+
+          <pre><code class="db w-100 hljs bash">[package]</br>name = "hello_world"</br>version = "0.1.0"</br>edition = "2021"</br></br>[dependencies]</code></pre>
+
+          <p>C'est ce qu'on appelle un manifeste, et il contient toutes les métadonnées dont Cargo a besoin pour compiler votre package.</p>
+
+          <p>Voici ce qu'il y a dedans <span class="border rounded" style="padding:3px;">src/main.rs:</span></p>
+
+          <pre><code class="db w-100 hljs bash">fn main() {</br>    println!("Hello, world!");</br>}</code></pre>
+
+          <p>Cargo a généré pour nous un programme "hello world", autrement connu sous le nom de caisse binaire. Compilons-le :</p>
+
+          <pre><code class="db w-100 hljs bash">$ cargo build</br>    Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)</code></pre>
+
+          <p>Et puis lancez-le:</p>
+
+          <pre><code class="db w-100 hljs bash">$ ./target/debug/hello_world</br> Hello, world!</code></pre>
+
+          <p>Nous pouvons également utiliser cargo run pour le compiler puis l'exécuter, le tout en une seule étape :</p>
+
+          <pre><code class="db w-100 hljs bash">$ cargo run</br>    Fresh hello_world v0.1.0 (file:///path/to/package/hello_world)</br> Running `target/hello_world`</br>Hello, world!</code></pre>
+
+          <a href="https://doc.rust-lang.org/cargo/commands/cargo-run.html" class="button btn btn-primary">doc.rust-lang.org Cargo
+          </a><br/>
+
+          <h2 class="section-heading">Source Rust</h2>
+
+          <a href="https://www.rust-lang.org/fr/tools/install" class="button btn btn-primary">rust-lang.org Install
+          </a><br/><br/>
+          <a href="https://doc.rust-lang.org/book/title-page.html" class="button btn btn-primary">doc.rust-lang.org Documentation
+          </a><br/>
+
+          <h2 class="section-heading">Tools Rust</h2>
+
+          <blockquote class="blockquote">Plugin vim Rust</blockquote>
+          <p>Il s'agit d'un plugin Vim qui fournit la détection de fichiers Rust, la coloration syntaxique, le formatage, l'intégration syntaxique, etc. Il nécessite Vim 8 ou supérieur pour une fonctionnalité complète. Certaines choses peuvent ne pas fonctionner sur les versions antérieures.</p>
+          <a href="https://github.com/rust-lang/rust.vim" class="button btn btn-primary">Github rust-lang
+          </a><br/><br/>
+          
+          <blockquote class="blockquote">Plugin VIM Rust et Autre langage</blockquote>
+          <a href="https://github.com/mbougrin/vim" class="button btn btn-primary">Github Plugin vim
+          </a><br/><br/>
+          
+          <blockquote class="blockquote">Autre Tools Rust</blockquote>
+          <a href="https://www.rust-lang.org/tools" class="button btn btn-primary">rust-lang.org tools
+          </a><br/><br/>
+          
+          <h2 class="section-heading">Video Tutoriel Rust</h2>
+
+          <p>Rust : 0 - Introduction et installation des outils</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/lf5SEzdH_1k">
+          </iframe>
+
+          <p>Rust : 1 - Introduction à Cargo</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/G4wWpiXAIUk">
+          </iframe>
+
+          <p>Rust : 2 - Les variables</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/FDcNsGMoTMA">
+          </iframe>
+
+          <p>Rust : 3 - Types des variables</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/jLuVPitC970">
+          </iframe>
+
+          <p>Rust : 4 - Les opérateurs</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/vRcl22gSi7M">
+          </iframe>
+
+          <p>Rust : 5 - Entrée utilisateur + utiliser une dépendance (rand)</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/ETLkec0uH_k">
+          </iframe>
+
+          <p>Rust : 6 - Les conditions</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/MsuOFmJrY5Q">
+          </iframe>
+
+          <p>Rust : 7 - Les boucles</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/xjPfi4FtJc0">
+          </iframe>
+
+          <p>Rust : 8 - L'opérateur match</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/_-kSHpLxEpI">
+          </iframe>
+
+          <p>Rust : 9 - Les fonctions</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/WU37HPtwSiU">
+          </iframe>
+
+          <p>Rust : 10 - Introduction à l'Ownership (Fonctionnement de la mémoire)</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/aRDR3NxvK3c">
+          </iframe>
+
+          <p>Rust : 11 - L'Ownership</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/Cy0It1JQQOs">
+          </iframe>
+
+          <p>Rust : 12 - Références et Borrowing</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/bTR9xD1kj_c">
+          </iframe>
+
+          <p>Rust version 1.53.0 : Identificateurs Unicode</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/rnNNYNwPM-M">
+          </iframe>
+
+          <p>Rust : 13 - Le type Slice</p>
+          <iframe width="730" height="442"
+          src="https://www.youtube.com/embed/wTQ8kSWHHlE">
+          </iframe>
+
         </div>
       </div>
     </div>
