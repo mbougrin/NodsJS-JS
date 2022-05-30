@@ -92,8 +92,10 @@
 
           <p>Node.js est utilisé notamment comme plateforme de serveur Web, elle est utilisée par GoDaddy, IBM, Netflix, Amazon Web Services, Groupon, Vivaldi, SAP, LinkedIn, Microsoft, Yahoo!, Walmart, Rakuten, Sage et PayPal.</p>
 
-          <h2 class="section-heading">Installation 16.15.0 LTS Windows</h2>
-          
+          <h2 class="section-heading">Installation</h2>
+           
+            <blockquote class="blockquote">Installation pour Windows 16.15.0 LTS</blockquote>
+
             <a href="https://nodejs.org/dist/v16.15.0/node-v16.15.0-x86.msi" class="button btn btn-primary">Télécharger 
               <span class="nowrap">NodeJS 16.15.0 LTS .msi</span>
               <span class="nowrap">(32-bit)</span>
@@ -114,7 +116,194 @@
               <span class="nowrap">(64-bit)</span>
             </a><br/><br/>
           
-          <h2 class="section-heading">Installation 18.2.0 Current</h2>
+            <blockquote class="blockquote">Installation pour Windows 18.2.0 Current</blockquote>
+
+            <a href="https://nodejs.org/dist/v18.2.0/node-v18.2.0-x86.msi" class="button btn btn-primary">Télécharger 
+              <span class="nowrap">NodeJS 18.2.0 Current .msi</span>
+              <span class="nowrap">(32-bit)</span>
+            </a><br/><br/>
+
+            <a href="https://nodejs.org/dist/v18.2.0/node-v18.2.0-x64.msi" class="button btn btn-primary">Télécharger 
+              <span class="nowrap">NodeJS 18.2.0 Current .msi</span>
+              <span class="nowrap">(64-bit)</span>
+            </a><br/><br/>
+
+            <a href="https://nodejs.org/dist/v18.2.0/node-v18.2.0-win-x86.zip" class="button btn btn-primary">Télécharger 
+              <span class="nowrap">NodeJS 18.2.0 Current .zip</span>
+              <span class="nowrap">(32-bit)</span>
+            </a><br/><br/>
+
+            <a href="https://nodejs.org/dist/v18.2.0/node-v18.2.0-win-x64.zip" class="button btn btn-primary">Télécharger 
+              <span class="nowrap">NodeJS 18.2.0 Current .zip</span>
+              <span class="nowrap">(64-bit)</span>
+            </a><br/><br/>
+
+            <h2 class="section-heading">Source Rust</h2>
+            
+            <a href="https://nodejs.org/fr/" class="button btn btn-primary">
+              nodejs.org
+            </a><br/><br/>
+
+            <a href="https://nodejs.org/dist/latest-v16.x/docs/api/" class="button btn btn-primary">
+              nodejs.org docs v16.15.0 LTS FR
+            </a><br/><br/>
+
+            <a href="https://nodejs.org/dist/latest-v18.x/docs/api/" class="button btn btn-primary">
+              nodejs.org docs v18.2.0 Current FR
+            </a><br/><br/>
+
+            <h2 class="section-heading">A propos de Node.js</h2>
+            
+            <p>En tant qu'environnement d'exécution JavaScript asynchrone et orienté événement, Node.js est conçu pour générer des applications extensibles. Dans cet exemple ("hello world"), plusieures connexions peuvent être gérées de manière concurrente. À chaque connexion, la fonction de rappel (callback function) est déclenchée, mais si il n'y a rien à faire, Node.js restera inactif.</p>
+
+            <pre><code class="db w-100 hljs bash">const http = require('http');</br></br>const hostname = '127.0.0.1';</br>const port = 3000;</br></br>const server = http.createServer((req, res) => {</br>  res.statusCode = 200;</br>  res.setHeader('Content-Type', 'text/plain');</br> res.end('Hello World');</br>});</br></br>server.listen(port, hostname, () => {</br>console.log(`Server running at http://${hostname}:${port}/`);</br>});</code></pre>
+
+            <p>Ceci contraste avec le modèle de concurrence plus commun dans lequel les processus sytème sont utilisés. La gestion réseau basée sur les processus est relativement inefficace et difficile à utiliser. De plus, les utilisateurs de Node.js n'ont pas à se soucier des problèmes d'interblocage des processus puisqu'il n'y a pas de verrouillage. Aucune fonction de Node.js ou presque n'effectue d'entrée/sortie, donc le processus ne se bloque pas. Et comme rien n'est bloquant, développer un système extensible est relativement aisé avec Node.js.</p>
+
+            <p>Si une partie des termes utilisés ne vous sont pas familliers, voici un article complet (en anglais) Bloquant vs Non-Bloquant.</p>
+
+            <p>voici un article complet (en FR) <a href="#bloquant">Bloquant vs Non-Bloquant</a></p>
+
+            <hr>
+
+            <p>Node.js est conçu de manière similaire et influencé par des librairies comme Event Machine (en) pour Ruby et Twisted (en) pour Python. Node.js pousse le modèle événementiel encore plus loin. Il instaure la boucle événementielle (en) en tant que composant élémentaire de l'environnement d'exécution et non comme une librairie. Dans les autres systèmes, il y a toujours un appel bloquant pour démarrer la boucle événementielle. Le comportement est défini habituellement par des fonctions de rappel au début du script, et à la fin un serveur est démarré avec un appel bloquant comme EventMachine::run(). Dans Node.js, il n'y a pas d'appel pour démarrer la boucle. Node.js entre simplement dans la boucle après avoir exécuté le script d'entrée. Node.js sort de la boucle événementielle lorsqu'il n'y a plus de fonction de rappel à exécuter. Ce comportement est similaire à celui de JavaScript dans un navigateur - la boucle événementielle est cachée à l'utilisateur.</p>
+
+            <p>HTTP a une place prépondérante dans Node.js, qui a été conçu pour le streaming et une faible latence. Ceci fait de Node.js une base toute désignée pour une librairie web ou un framework.</p>
+
+            <p>Et si Node.js a été conçu sans processus multiples, vous pouvez tout de même profiter d'un environnement multi-coeur. Vous pouvez générer des processus enfant par le biais de l'API [child_process.fork()][] (en), avec lesquels vous pourrez communiquer facilement. Basé sur la même interface, le module [cluster][] (en) vous permettra de partager les sockets entre vos processus pour faire de la répartition de charge entre vos coeurs.</p>
+
+            <h2 class="section-heading">Documentation NodeJS</h2>
+            
+            <a href="https://nodejs.org/dist/latest-v16.x/docs/api/" class="button btn btn-primary">
+              nodejs.org docs api 16.15.0
+            </a><br/><br/>
+
+            <a href="https://nodejs.org/dist/latest-v18.x/docs/api/" class="button btn btn-primary">
+              nodejs.org docs api 18.2.0
+            </a><br/><br/>
+
+            <h2 class="section-heading">Vidéo NodeJS FR</h2>
+
+            <p>NodeJS (1/6) : Qu'est ce que NodeJS ?</p>
+            <iframe width="730" height="442"
+            src="https://www.youtube.com/embed/0PA69L88HeI">
+            </iframe>
+
+            <p>NodeJS (2/6) : Installation</p>
+            <iframe width="730" height="442"
+            src="https://www.youtube.com/embed/53U0TBKFwUw">
+            </iframe>
+
+            <p>NodeJS (3/6) : Notre premier serveur</p>
+            <iframe width="730" height="442"
+            src="https://www.youtube.com/embed/HLPHoY-h7vc">
+            </iframe>
+
+            <p>NodeJS (4/6) : Les Streams</p>
+            <iframe width="730" height="442"
+            src="https://www.youtube.com/embed/iZCYQSq9IQM">
+            </iframe>
+
+            <p>NodeJS (5/6) : Modules & NPM</p>
+            <iframe width="730" height="442"
+            src="https://www.youtube.com/embed/B4P_b-UzjLw">
+            </iframe>
+
+            <p>NodeJS (6/6) : ExpressJS</p>
+            <iframe width="730" height="442"
+            src="https://www.youtube.com/embed/Q8wacXNngXs">
+            </iframe>
+
+            <p>Node JS Tutorial Français pour Débutant - Cours complet 8h [2022]</p>
+            <iframe width="730" height="442"
+            src="https://www.youtube.com/embed/NRxzvpdduvQ">
+            </iframe>
+           
+            <h2 class="section-heading" id="bloquant">Présentation du Bloquant et du Non-Bloquant</h2>
+
+            <p>Cet aperçu couvre la différence entre les appels bloquants et non bloquants dans Node.js. Cet aperçu fera référence à la boucle d'événements et à libuv, mais aucune connaissance préalable de ces sujets n'est requise. Les lecteurs sont supposés avoir une compréhension de base du langage JavaScript et Node.js <a href="#callbacks">callback pattern.</a></p>
+
+            <p>"I/O" se réfère principalement à l'interaction avec le disque et le réseau du système pris en charge par libuv.</p>
+
+            <blockquote class="blockquote">Blocage</blockquote>
+
+            <p>Le blocage se produit lorsque l'exécution de JavaScript supplémentaire dans le processus Node.js doit attendre qu'une opération non JavaScript se termine. Cela se produit car la boucle d'événements ne peut pas continuer à exécuter JavaScript pendant qu'une opération de blocage est en cours.</p>
+
+            <p>Dans Node.js, JavaScript qui présente des performances médiocres en raison d'une utilisation intensive du processeur plutôt que d'attendre une opération non JavaScript, telle qu'une I/O, n'est généralement pas appelé blocage. Les méthodes synchrones de la bibliothèque standard Node.js qui utilisent libuv sont les opérations de blocage les plus couramment utilisées. Les modules natifs peuvent également avoir des méthodes de blocage.</p>
+
+            <p>Toutes les méthodes d'I/O de la bibliothèque standard Node.js fournissent des versions asynchrones, non bloquantes, et acceptent les fonctions de rappel. Certaines méthodes ont également des homologues bloquants, dont les noms se terminent par <span class="border rounded" style="padding:3px;">Sync.</span></p>
+
+            <blockquote class="blockquote">Code de comparaison</blockquote>
+
+            <p>Les méthodes bloquantes s'exécutent de manière synchrone et les méthodes non bloquantes s'exécutent de manière asynchrone.</p>
+
+            <p>En utilisant le module File System comme exemple, il s'agit d'une lecture de fichier synchrone :</p>
+
+            <pre><code class="db w-100 hljs bash">const fs = require('fs');</br>données const = fs.readFileSync('/file.md');</br>// bloque ici jusqu'à ce que le fichier soit lu</code></pre>
+
+            <p>Et voici un exemple asynchrone équivalent :</p>
+
+            <pre><code class="db w-100 hljs bash">const fs = require('fs');</br>fs.readFile('/file.md', (err, data) => {</br> if (err) throw err;</br>});</code></pre>
+
+            <p>Le premier exemple semble plus simple que le second mais présente l'inconvénient que la seconde ligne bloque l'exécution de tout JavaScript supplémentaire jusqu'à ce que le fichier entier soit lu. Notez que dans la version synchrone, si une erreur est renvoyée, elle devra être interceptée ou le processus plantera. Dans la version asynchrone, c'est à l'auteur de décider si une erreur doit être renvoyée comme indiqué.</p>
+
+            <p>Développons un peu notre exemple :</p>
+
+            <pre><code class="db w-100 hljs bash">const fs = require('fs');</br>données const = fs.readFileSync('/file.md');</br>// bloque ici jusqu'à ce que le fichier soit lu</br>console.log(data);</br>moreWork(); // s'exécutera après console.log</code></pre>
+
+            <p>Et voici un exemple asynchrone similaire, mais non équivalent :</p>
+
+            <pre><code class="db w-100 hljs bash">const fs = require('fs');</br>fs.readFile('/file.md', (err, data) => {</br> if (err) throw  err;</br> console.log(data);</br>
+            });</br>moreWork(); // s'exécutera avant console.log</code></pre>
+
+            <p>Dans le premier exemple ci-dessus, <span class="border rounded" style="padding:3px;">console.log</span> sera appelé avant <span class="border rounded" style="padding:3px;">moreWork()</span>. Dans le deuxième exemple, <span class="border rounded" style="padding:3px;">fs.readFile()</span> est non bloquant, l'exécution de JavaScript peut donc continuer et <span class="border rounded" style="padding:3px;">moreWork()</span> sera appelé en premier. La possibilité d'exécuter <span class="border rounded" style="padding:3px;">moreWork()</span> sans attendre la fin de la lecture du fichier est un choix de conception clé qui permet un débit plus élevé.</p>
+
+            <blockquote class="blockquote">Concurrence et débit</blockquote>
+
+            <p>L'exécution de JavaScript dans Node.js est monothread, donc la simultanéité fait référence à la capacité de la boucle d'événements à exécuter des fonctions de rappel JavaScript après avoir terminé d'autres travaux. Tout code censé s'exécuter de manière simultanée doit permettre à la boucle d'événements de continuer à s'exécuter pendant que des opérations non JavaScript, telles que des I/O, se produisent.</p>
+
+            <p>À titre d'exemple, considérons un cas où chaque demande à un serveur Web prend 50 ms pour se terminer et 45 ms de ces 50 ms sont des I/O de base de données qui peuvent être effectuées de manière asynchrone. Le choix d'opérations asynchrones non bloquantes libère ces 45 ms par requête pour gérer d'autres requêtes. Il s'agit d'une différence de capacité significative simplement en choisissant d'utiliser des méthodes non bloquantes au lieu de méthodes bloquantes.</p>
+
+            <p>La boucle d'événements est différente des modèles dans de nombreux autres langages où des threads supplémentaires peuvent être créés pour gérer le travail simultané.</p>
+
+            <blockquote class="blockquote">Dangers du mélange de codes bloquants et non bloquants</blockquote>
+
+            <p>Certains schémas doivent être évités lorsqu'il s'agit d'I/O. Regardons un exemple :</p>
+
+            <pre><code class="db w-100 hljs bash">const fs = require('fs');</br>fs.readFile('/file.md', (err, data) => {</br> if (err) throw err;</br>  console.log(data);</br>});</br>fs.unlinkSync('/file.md');</code></pre>
+
+            <p>Dans l'exemple ci-dessus, <span class="border rounded" style="padding:3px;">fs.unlinkSync()</span> est susceptible d'être exécuté avant <span class="border rounded" style="padding:3px;">fs.readFile()</span>, ce qui supprimerait <span class="border rounded" style="padding:3px;">file.md</span> avant qu'il ne soit réellement lu. Une meilleure façon d'écrire ceci, qui est complètement non bloquant et garanti pour s'exécuter dans le bon ordre est :</p>
+
+            <pre><code class="db w-100 hljs bash">const fs = require('fs');</br>
+            fs.readFile('/file.md', (readFileErr, données) => {</br>  if (readFileErr) throw readFileErr;</br>  console.log(data);</br> fs.unlink('/fichier.md', (unlinkErr) => {</br>    if (unlinkErr) throw unlinkErr;</br>  });</br>});</code></pre>
+
+            <p>Ce qui précède place un appel non bloquant à <span class="border rounded" style="padding:3px;">fs.unlink()</span> dans le rappel de <span class="border rounded" style="padding:3px;">fs.readFile()</span> qui garantit le bon ordre des opérations.</p>
+
+            <h2 class="section-heading" id="callbacks">Présentation Callbacks</h2>
+            
+            <p>Dans un programme synchrone, vous écririez quelque chose comme :</p>
+
+            <pre><code class="db w-100 hljs bash">function processData () {</br>  var data = fetchData ();</br> data += 1;</br> return data;</br>}</code></pre>
+
+            <p>Cela fonctionne très bien et est très typique dans d'autres environnements de développement. Cependant, si fetchData prend beaucoup de temps pour charger les données (peut-être qu'il les diffuse depuis le lecteur ou Internet), cela provoque le "blocage" de l'ensemble du programme - autrement connu sous le nom de rester immobile et d'attendre - jusqu'à ce qu'il charge les données . Node.js, étant une plate-forme asynchrone, n'attend pas que des choses comme les I/O de fichiers se terminent - Node.js utilise des rappels. Un rappel est une fonction appelée à la fin d'une tâche donnée ; cela empêche tout blocage et permet à d'autres codes d'être exécutés entre-temps.</p>
+
+            <p>La façon dont Node.js traite ce qui précède ressemblerait un peu plus à ceci :</p>
+
+            <pre><code class="db w-100 hljs bash">function processData (callback) {</br>  fetchData(function (err, data) {</br>   if (err) {</br>     console.log("An error has occurred. Abort everything!");</br>     return callback(err);</br>   }</br>    data += 1;</br>    callback(data);</br>  });</br>}</code></pre>
+
+            <p>À première vue, cela peut sembler inutilement compliqué, mais les rappels sont à la base de Node.js. Les rappels vous donnent une interface avec laquelle dire "et quand vous avez fini de faire ça, faites tout ça". Cela vous permet d'avoir autant d'opérations d'I/O que votre système d'exploitation peut gérer en même temps. Par exemple, dans un serveur Web avec des centaines ou des milliers de requêtes en attente avec plusieurs requêtes bloquantes, l'exécution des requêtes bloquantes de manière asynchrone vous permet de continuer à travailler et pas simplement de rester immobile et d'attendre que les opérations de blocage reviennent. C'est une amélioration majeure.</p>
+
+            <p>La convention typique avec les fonctions asynchrones (ce que presque toutes vos fonctions devraient être) :</p>
+
+            <pre><code class="db w-100 hljs bash">function asyncOperation ( a, b, c, callback ) {</br>  // ... lots of hard work ...</br> if ( /* an error occurs */ ) {</br>   return callback(new Error("An error has occurred"));</br> }</br> // ... more work ...</br>  callback(null, d, e, f);</br>}</br></br>asyncOperation ( params.., function ( err, returnValues.. ) {</br>  //This code gets run after the async operation gets run</br>});</code></pre>
+
+            <h2 class="section-heading">Actualités NodeJS</h2>
+            
+            <a href="https://nodejs.org/fr/blog/" class="button btn btn-primary">
+              nodejs.org docs blog
+            </a><br/><br/>
+
+            <p>Vous voudrez presque toujours suivre la convention de rappel d'erreur, car la plupart des utilisateurs de Node.js s'attendront à ce que votre projet les suive. L'idée générale est que le rappel est le dernier paramètre. Le rappel est appelé une fois que la fonction a terminé toutes ses opérations. Traditionnellement, le premier paramètre du rappel est la valeur d'erreur. Si la fonction rencontre une erreur, elle appelle généralement le rappel avec le premier paramètre étant un objet Error. S'il se termine proprement, ils appelleront le rappel avec le premier paramètre étant nul et le reste étant la ou les valeurs de retour.</p>
 
         </div>
       </div>
