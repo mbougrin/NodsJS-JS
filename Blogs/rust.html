@@ -88,6 +88,26 @@
 
           <h2 class="section-heading">Installation</h2>
 
+          <p>Erreur lors installation sur Debian ARM x64</p>
+
+          <blockquote class="blockquote">Message erreur et impossible de faire un cargo new hello_world</blockquote>
+
+          <pre><code class="db w-100 hljs bash">cargo new hello_world</br>error: 'cargo' is not installed for the toolchain 'stable-aarch64-unknown-linux-gnu'</code></pre>
+
+          <pre><code class="db w-100 hljs bash">rustup show</br></br>Default host: aarch64-unknown-linux-gnu</br>rustup home:  /home/mbougrin/.rustup</br></br>info: syncing channel updates for 'stable-aarch64-unknown-linux-gnu'</br>info: latest update on 2022-05-19, rust version 1.61.0 (fe5b13d68 2022-05-18)</br>installed toolchains</br>--------------------</br></br>stable-aarch64-unknown-linux-gnu (default)</br>nightly-aarch64-unknown-linux-gnu</br></br>active toolchain</br>----------------</br></br>stable-aarch64-unknown-linux-gnu (default)</br>(rustc does not exist)</code></pre>
+
+          <blockquote class="blockquote">Solution sur mon serveur Debian ARM x64</blockquote>
+
+          <p>Avec c'est 4 commande j'ai pu resoudre mon probleme par rapport a installation de rust sur Debian ARM x64</p>
+
+          <pre><code class="db w-100 hljs bash">rustup self uninstall</br>sudo apt install rustc</br>curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</br>source ~/.cargo/env</code></pre>
+
+          
+
+          <a href="https://stackoverflow.com/questions/72449612/i-got-an-error-when-installing-rust-and-using-cargo-new-on-debian-arm-x64" class="button btn btn-primary">Stack Overflow 
+            <span class="nowrap"> Erreur lors installation sur Debian ARM x64</span>
+          </a><br/><br/>
+
           <blockquote class="blockquote">Installation pour Linux ou MacOsx</blockquote>
           <p>Commande a executer dans le terminal pour installation de Rust pour MacOsX et Linux.</p>
           <pre><code class="db w-100 hljs bash">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre>
