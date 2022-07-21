@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="mbougrin">
+
+  <meta name="description" content="tutoriel example cpp c++ serveur socket bind select"/>
+  <meta name="title" content="tutoriel example cpp c++ serveur socket bind select"/>
+
+  <title>Tutoriel Serveur en C++</title>
+
+  <!-- Icone Tab Nab -->
+  <link rel="icon" href="img/blog.png" />
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+  <!-- highlight.js -->
+  <!-- https://highlightjs.org/ -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Blog mbougrin</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">à propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/cpp.png');background-color:white;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Tutoriel C++</h1>
+            <h2 class="subheading">Tutoriel Serveur en C++</h2>
+            <span class="meta">Poster par
+              <a href="http://mbougrin.fr">mbougrin</a>
+              Le 30 juin 2022</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+          <h2 class="section-heading">Serveur en C++</h2>
+
+          <p>Voici le code d'un serveur que j'ai pu faire en C++.</p>
+
+          <p>Que je vais vous détailler pas à pas au fur à mesure pour comprendre pourquoi chaque fonction est appelée et a quoi, elle sert.</p>
+
+          <a href="https://github.com/mbougrin/cpp/tree/master/timeserver" class="button btn btn-primary">
+            <span class="nowrap">Source github</span>
+          </a><br/><br/>
+          
+          <pre><code class="db w-100 cpp">
+void        ClassSocket::createsocket(void)
+{
+  struct rlimit   rlp;
+  struct sockaddr_in  sin;
+  int                 optval;
+
+  if (getrlimit(RLIMIT_NOFILE, &rlp) == -1) {
+    exit(-1);
+  }
+  _maxsd = rlp.rlim_cur;
+  _fds = (struct s_fds *)malloc(sizeof(struct s_fds) * _maxsd);
+  if ((_sd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+    exit(-1);
+  }
+  sin.sin_port = htons(_port);
+  sin.sin_addr.s_addr = inet_addr(_addr);
+  sin.sin_family = AF_INET;
+  optval = 1;
+  if ((setsockopt(_sd,SOL_SOCKET,SO_REUSEADDR,&optval,sizeof(int))) == -1) {
+    exit(-1);
+  }
+  if (bind(_sd, (struct sockaddr *)&sin, sizeof(struct sockaddr)) == -1) {
+    exit(-1);
+  }
+  if (listen(_sd, _maxsd) == -1) {
+    exit(-1);
+  }
+  _fds[_sd].type = FD_SERV;
+  _fds[_sd].fct_read = &ClassSocket::acceptclient;
+}
+          </code></pre>
+
+          <p>Du coup dans un premier temps je récupère la limite max du nombre de socket que je pourrais utilise sur le serveur.</p>
+          <p>Via la fonction <span class="font-italic">getrlimit</span> avec le flag <span class="font-weight-bold">RLIMIT_NOFILE</span></p>
+
+          <pre><code class="db w-100 cpp">
+struct rlimit   rlp;
+
+if ((_maxsd  = getrlimit(RLIMIT_NOFILE, &rlp)) == -1) {
+  printf("getrlimit ERROR\n");
+  exit(-1);
+}
+printf("limite souple:%d\n", rlp.rlim_cur);
+printf("limite stricte (plafond de rlim_cur):%d\n", rlp.rlim_cur);
+          </code></pre>
+
+          <blockquote class="blockquote">Description fonction getrlimit</blockquote>
+
+          <p><span class="font-italic">getrlimit()</span> et <span class="font-italic">setrlimit()</span> lisent ou écrivent les limites des ressources systèmes. Chaque ressource a une limite souple et une limite stricte définies par la structure rlimit (l'argument rlim de <span class="font-italic">getrlimit()</span> et <span class="font-italic">setrlimit()</span>) :</p>
+          <p><span class="font-weight-bold">RLIMIT_NOFILE</span> Le nombre maximal de descripteurs de fichier qu'un processus peut ouvrir simultanément. Les tentatives d'ouverture (open(2), pipe(2), dup(2), etc) dépassant cette limite renverront l'erreur EMFILE.</p>
+
+          <a href="http://manpagesfr.free.fr/man/man2/getrlimit.2.html" class="button btn btn-primary"> 
+            <span class="nowrap">man getrlimit</span>
+          </a><br/><br/>
+
+          <p>Ensuite, je fais une allocation dynamique avec <span class="font-italic">malloc</span> sur ma structure de socket qui me permettra de gérer les utilisateurs connectés.</p>
+
+          <a href="http://manpagesfr.free.fr/man/man3/malloc.3.html" class="button btn btn-primary"> 
+            <span class="nowrap">man malloc</span>
+          </a><br/><br/>
+
+          <p>Je fais une allocation dynamique du nombre maximum renvoyez par <span class="font-italic">getrlimit</span> qui sera mon maximum utilisateur possible sur le serveur.</p>
+        
+          <pre><code class="db w-100 cpp">
+struct              s_fds
+{
+  //# define FD_FREE    0 FD disponible
+  //# define FD_SERV    1 FD du serveur
+  //# define FD_CLIENT  2 FD d'un client 
+  int             type;
+  //Pointeur sur fonction read (lecture)
+  void            (*fct_read)(int);
+  //Pointeur sur fonction write (ecriture)
+  void            (*fct_write)(int);
+  //Buffer read
+  char            buf_read[BUF_SIZE + 1];
+  //Buffer write
+  char            buf_write[BUF_SIZE + 1];
+};
+
+_fds = (struct s_fds *)malloc(sizeof(struct s_fds) * _maxsd);
+          </code></pre>
+
+          <p>Penser a <span class="font-italic">free</span> toutes vos allocations fait avec malloc pour éviter des Leaks.</p>
+          <pre><code class="db w-100 cpp">
+free(_fds);
+_fds = NULL;
+          </code></pre>
+
+          <a href="http://manpagesfr.free.fr/man/man3/malloc.3.html" class="button btn btn-primary"> 
+            <span class="nowrap">man free</span>
+          </a><br/><br/>
+
+          <p>Penser fermer vos FD (file descriptor/socket descriptor) une fois utilisation finie.</p>
+          <pre><code class="db w-100 cpp">
+close(_sd);
+          </code></pre>
+
+          <a href="http://manpagesfr.free.fr/man/man2/close.2.html" class="button btn btn-primary"> 
+            <span class="nowrap">man close</span>
+          </a><br/><br/>
+
+          <p>Du coup j'ouvre la socket principal du serveur via la fonction <span class="font-italic">socket</span>.</p>
+          <p>Afin avoir le socket descriptor principal du serveur.</p>
+
+          <pre><code class="db w-100 cpp">
+  if ((_sd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+    exit(-1);
+  }
+          </code></pre>
+
+          <blockquote class="blockquote">Description fonction socket</blockquote>
+          <p><span class="font-italic">socket()</span> crée un point de communication, et renvoie un descripteur.</p>
+          <p><span class="font-weight-bold">AF_INET</span> Protocoles Internet IPv4.</p>
+          <p><span class="font-weight-bold">SOCK_STREAM</span> Support de dialogue garantissant l'intégrité, fournissant un flux de données binaires, et intégrant un mécanisme pour les transmissions de données hors-bande.</p>
+
+          <a href="http://manpagesfr.free.fr/man/man2/socket.2.html" class="button btn btn-primary"> 
+            <span class="nowrap">man socket</span>
+          </a><br/><br/>
+
+          <p><span class="font-italic">setsockopt()</span> permet de pouvoir reutiliser une adresse local.</p>
+
+          <pre><code class="db w-100 cpp">
+ if ((setsockopt(_sd,SOL_SOCKET,SO_REUSEADDR,&optval,sizeof(int))) == -1) {
+  exit(-1);
+}
+          </code></pre>
+
+          <blockquote class="blockquote">Description fonction setsockopt</blockquote>
+
+          <p>Les appels système <span class="font-italic">getsockopt()</span> et <span class="font-italic">setsockopt()</span> manipulent les options associées à une socket. Des options peuvent exister à plusieurs niveaux de protocole ; ils sont toujours présents au niveau "socket" le plus élevé.</p>
+
+          <p>Lors de la manipulation d'options de socket, le niveau auquel l'option réside et le nom de l'option doivent être spécifiés. Pour manipuler les options au niveau du socket, le niveau est spécifié comme SOL_SOCKET. Pour manipuler des options à tout autre niveau, le numéro de protocole du protocole approprié contrôlant l'option est fourni. Par exemple, pour indiquer qu'une option doit être interprétée par le protocole TCP, le niveau doit être défini sur
+          numéro de protocole de TCP ; voir getprotoent(3).</p>
+          <p><span class="font-weight-bold">SO_REUSEADDR</span> Permet la réutilisation des adresses locales</p>
+
+          <a href="https://www.freebsd.org/cgi/man.cgi?query=setsockopt&sektion=2" class="button btn btn-primary"> 
+            <span class="nowrap">man setsockopt</span>
+          </a><br/><br/>
+
+          <p>J'ajoute le port ainsi que address choisie aupres de ma structure sin.</p>
+          <p><span class="font-weight-bold">AF_INET</span> pour IPV4</p>
+
+          <a href="http://manpagesfr.free.fr/man/man3/byteorder.3.html" class="button btn btn-primary"> 
+            <span class="nowrap">man htons</span>
+          </a><br/><br/>
+
+          <a href="http://manpagesfr.free.fr/man/man3/inet.3.html" class="button btn btn-primary"> 
+            <span class="nowrap">man inet_addr</span>
+          </a><br/><br/>
+          
+          <pre><code class="db w-100 cpp">
+struct sockaddr_in  sin;
+
+sin.sin_port = htons(_port);
+sin.sin_addr.s_addr = inet_addr(_addr);
+sin.sin_family = AF_INET;
+if (bind(_sd, (struct sockaddr *)&sin, sizeof(struct sockaddr)) == -1) {
+  exit(-1);
+}
+          </code></pre>
+
+          <blockquote class="blockquote">Description fonction bind</blockquote>
+
+          <p>Quand une socket est créée avec l'appel système socket(2), elle existe dans l'espace des noms mais n'a pas de nom assigné). <span class="font-italic">bind()</span> affecte l'adresse spécifiée dans addr à la socket référencée par le descripteur de fichier sockfd. addrlen indique la taille, en octets, de la structure d'adresse pointée par addr. Traditionnellement cette opération est appelée « affectation d'un nom à une socket ».</p>
+        
+          <a href="http://manpagesfr.free.fr/man/man2/bind.2.html" class="button btn btn-primary"> 
+            <span class="nowrap">man bind</span>
+          </a><br/><br/>
+
+          <p>J'appel la fonction <span class="font-italic">listen</span> avec le socket descriptor renvoyez par la fonction socket.</p>
+          <p>Et J'appel la fonction aussi avec le nombre maximun de socket descriptor renvoyez par la fonction <span class="font-italic">getrlimit</span>.</p>
+
+          <pre><code class="db w-100 cpp">
+  if (listen(_sd, _maxsd) == -1) {
+    exit(-1);
+  }
+          </code></pre>
+
+          <blockquote class="blockquote">Description fonction listen</blockquote>
+
+          <p><span class="font-italic">listen()</span> marque la socket référencée par sockfd comme une socket passive, c'est-à-dire comme une socket qui sera utilisée pour accepter les demandes de connexions entrantes en utilisant accept(2).</p>
+
+          <a href="http://manpagesfr.free.fr/man/man2/listen.2.html" class="button btn btn-primary"> 
+            <span class="nowrap">man listen</span>
+          </a><br/><br/>
+
+          <p>Ensuite j'enregistre ce socket descriptor dans la scucture de socket.</p>
+          <p>Et je lui donne FD_SERV afin de savoir que ce socket descriptor est utilise par le serveur.</p>
+          <p>Ensuite le lui donne une pointeur sur fonction du acceptclient qui sera appeler lors de la connection d'un nouveaux client.</p>
+
+          <pre><code class="db w-100 cpp">
+_fds[_sd].type = FD_SERV;
+_fds[_sd].fct_read = &ClassSocket::acceptclient;
+          </code></pre>
+
+          <p>Ensuite passons a la main loop qui nous permettra de gérer les connexions ainsi que la lecture des message envoyer par les clients.</p>
+
+          <p>Il y aura 3 étapes sur la main loop.</p>
+
+          <pre><code class="db w-100 cpp">
+void        ClassSocket::mainloop(void)
+{
+  while (1)
+  {
+    initfd();
+    do_select();
+    check_fd();
+  }
+}
+          </code></pre>
+
+          <p>initfd()</p>
+
+          <p>Initialisation des FD par defaults</p>
+
+          <pre><code class="db w-100 cpp">
+void        ClassSocket::initfd(void)
+{
+  int     i;
+
+  i = 0;
+  FD_ZERO(&_writefd);
+  FD_ZERO(&_readfd);
+  while (i < _maxsd)
+  {
+    if (_fds[i].type != FD_FREE)
+    {
+      FD_SET(i, &_readfd);
+      FD_SET(i, &_writefd);
+    }
+    ++i;
+  }
+}
+        </code></pre>
+
+        <a href="http://manpagesfr.free.fr/man/man2/select.2.html" class="button btn btn-primary"> 
+            <span class="nowrap">man FD_ZERO et FD_SET</span>
+        </a><br/><br/>
+
+        <p>do_select()</p>
+
+        <p>Les fonctions <span class="font-italic">select()</span> et <span class="font-italic">pselect()</span> permettent à un programme de surveiller plusieurs descripteurs de fichier, attendant qu'au moins l'un des descripteurs de fichier devienne « prêt » pour certaines classes d'opérations d'entrées-sorties (par exemple, entrée possible). Un descripteur de fichier est considéré comme prêt s'il est possible d'effectuer l'opération d'entrées-sorties correspondante (par exemple, un read(2)) sans bloquer.</p> 
+
+        <pre><code class="db w-100 cpp">
+void        ClassSocket::do_select(void)
+{
+  struct timeval  tv;
+
+  tv.tv_sec = 1;
+  _r = select(_sd + 1, &_readfd, &_writefd, NULL, &tv);
+}
+        </code></pre>
+
+        <a href="http://manpagesfr.free.fr/man/man2/select.2.html" class="button btn btn-primary"> 
+            <span class="nowrap">man select</span>
+        </a><br/><br/>
+
+        <p>check_fd()</p>
+
+        <p>Permet de vérifier s'il y a une écriture ou lecture en cours a traite.</p>
+
+        <pre><code class="db w-100 cpp">
+void        ClassSocket::check_fd(void)
+{
+  int   i = 0;
+
+  while ((i < _maxsd) && (_r > 0))
+  {
+    if (FD_ISSET(i, &_readfd)) {
+      _fds[i].fct_read(i);
+    }
+    if (FD_ISSET(i, &_writefd)) {
+      _fds[i].fct_write(i);
+    }
+    if (FD_ISSET(i, &_readfd) || FD_ISSET(i, &_writefd)) {
+      _r--;
+    }
+    i++;
+  }
+}  
+        </code></pre>
+
+        <p>acceptclient</p>
+
+        <pre><code class="db w-100 cpp">
+void        ClassSocket::acceptclient(int i)
+{
+  int         cs;
+  struct sockaddr_in  csin;
+  socklen_t     csin_len;
+
+  (void)i;
+  csin_len = sizeof(csin);
+  if ((cs = accept(_sd, (struct sockaddr *)&csin, &csin_len)) == -1)
+  {
+    exit(-1);
+  }
+  ClassSocket::cleanclient(&_fds[cs]);
+  if (_client >= MAX_USER)
+  {
+    close(cs);
+    return ;
+  }
+  _fds[cs].type = FD_CLIENT;
+  _fds[cs].fct_read = &ClassSocket::clientread;
+  _fds[cs].fct_write = &ClassSocket::clientwrite;
+  _client++;
+  send(cs, "hey\n", 4, 0);
+  thread t1(thread_write, cs);
+    t1.detach();
+}
+        </code></pre>
+
+        <p>Du coup lors arrive une nouveaux client qui ce connect a mon serveur.</p>
+
+        <p>Il passera par <span class="font-italic">acceptclient</span> et la valeur de i sera le socket descriptor.</p>
+
+        <p>Ensuite j'utilise <span class="font-italic">cleanclient</span> afin de pouvoir mettre par default les valeur de ma structure de socket.</p>
+
+        <p>Ensuite, je donne le type à ma structure de socket pour savoir que c'est un client FD_CLIENT et ensuite, je le lui donne les pointeurs sur fonction pour écriture et la lecture.</p>
+
+        <p>Pour écriture, tout dépendra de la gestion du serveur qui soit synchrone ou asynchrone.</p>
+
+        <p>Du coup la il est asynchrone.</p>
+
+        <p>Du coup je créer un thread pour ce serveur pour chaque client afin qui puisse répondre tous les clients tous les 1 secondes avec le temps ou le serveur est installer (ou qui est cours de lancement).</p>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="http://mbougrin.fr">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-html5  fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://fr.linkedin.com/in/mhedi-bougrine-14a47596?original_referer=https%3A%2F%2Fwww.google.com%2F">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="http://github.com/mbougrin">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; mbougrin 2022</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
