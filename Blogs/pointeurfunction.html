@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="mbougrin">
+
+  <meta name="description" content="linux installation debian lillyusbcreator windows usb cle bootable tutoriel"/>
+  <meta name="title" content="linux installation debian lillyusbcreator windows usb cle bootable tutoriel"/>
+
+  <title>Tutoriel Pointeur sur fonction C++</title>
+
+  <!-- Icone Tab Nab -->
+  <link rel="icon" href="img/blog.png" />
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+  <!-- highlight.js -->
+  <!-- https://highlightjs.org/ -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Blog mbougrin</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">à propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/cpp.png');background-color:white;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Tutoriel C++</h1>
+            <h2 class="subheading">Tutoriel Pointeur sur fonction C++</h2>
+            <span class="meta">Poster par
+              <a href="http://mbougrin.fr">mbougrin</a>
+              Le 13 juin 2022</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+          <h2 class="section-heading">Définition d'un pointeur</h2>
+
+          <p>Un pointeur est une variable contenant l'adresse d'une autre variable d'un type donné. La notion de pointeur fait souvent peur car il s'agit d'une technique de programmation très puissante, permettant de définir des structures dynamiques, c'est-à-dire qui évolue au cours du temps (par opposition aux tableaux par exemple qui sont des structures de données statiques, dont la taille est figée à la définition).</p>
+
+          <h2 class="section-heading">Example pointeur fonction C++</h2>
+
+          <p>Example de pointeur sur fonction en C++</p>
+
+          <pre><code class="db w-100 cpp">
+void printNb(int nb)
+{
+  printf("%d\n", nb);
+}
+
+int main(int ac, char **av)
+{
+  void  (*ptr)(int);
+
+  (*ptr) = &printNb;
+  (*ptr)(42);
+  return 0;  
+}
+          </code></pre>
+
+          <p>Example de tableau pointeur sur fonction en C++</p>
+
+          <pre><code class="db w-100 cpp">
+void printHello(void)
+{
+  printf("hello");
+}
+
+void printWord(void)
+{
+  printf("word");
+}
+
+int main(int ac, char **av)
+{
+  void  (*ptr[2])(int);
+
+  ptr[0] = &printHello;
+  ptr[1] = &printWord;
+  (*ptr[0])();
+  (*ptr[1])();
+  return 0;  
+}
+          </code></pre>
+
+          <p>Example de pointeur sur object en C++ avec le framework Qt</p>
+
+          <pre><code class="db w-100 cpp">
+#include &ltQList&gt
+
+int main(int argc, char *argv[])
+{
+    Q_UNUSED(argc)
+    Q_UNUSED(argv)
+    QList&ltint&gt    (*ptrFunc);
+    QList&ltint&gt    lst;
+
+    ptrFunc = &lst;
+    (*ptrFunc).append(42);
+    return 0;
+}
+          </code></pre>
+
+          <p>Example de tableau pointeur sur object en C++ avec le framework Qt</p>
+
+          <pre><code class="db w-100 cpp">
+void TestWidget::initPtr(void)
+{
+  QCheckBox   (*m_arrayPtr[10]);
+
+  for (int i = 0 ; i < 10 ; ++i) {
+    m_arrayPtr[i] = nullptr;
+  }
+  m_arrayPtr[0] = ui->checkBox0;
+  m_arrayPtr[1] = ui->checkBox1;
+  for (int i = 0 ; i < 10 ; ++i) {
+    if (m_arrayPtr[i])
+      m_arrayPtr[i]->setVisible(true);
+  }
+} 
+          </code></pre>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="http://mbougrin.fr">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-html5  fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://fr.linkedin.com/in/mhedi-bougrine-14a47596?original_referer=https%3A%2F%2Fwww.google.com%2F">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="http://github.com/mbougrin">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; mbougrin 2022</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
